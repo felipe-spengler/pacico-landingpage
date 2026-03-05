@@ -1,0 +1,136 @@
+.navbar {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline: 0;
+    z-index: 999;
+    transition: background 0.4s, padding 0.4s, border-color 0.4s;
+    padding-block: 28px;
+    border-bottom: 1px solid transparent;
+}
+
+.navbar.scrolled {
+    background: rgba(4, 5, 9, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding-block: 16px;
+    border-bottom-color: var(--border);
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s4);
+}
+
+.nav-logo img {
+    height: 38px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--s4);
+}
+
+.nav-link {
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--text);
+    border-bottom-color: var(--gold);
+}
+
+.nav-cta {
+    background: var(--gold);
+    color: #000;
+    padding: 11px 26px;
+    border-radius: var(--r-sm);
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.nav-cta:hover {
+    background: #ffe44d;
+    transform: translateY(-2px);
+}
+
+/* hamburger — mobile */
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.nav-hamburger span {
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.desktop-only {
+    display: flex;
+}
+
+.nav-links-wrapper {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .nav-hamburger {
+        display: flex;
+    }
+
+    .nav-links-wrapper {
+        position: fixed;
+        inset-block-start: 70px;
+        inset-inline: 0;
+        background: rgba(4, 5, 9, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: var(--s4);
+        flex-direction: column;
+        gap: var(--s3);
+        display: none;
+    }
+
+    .nav-links-wrapper.open {
+        display: flex;
+    }
+
+    .desktop-only {
+        display: none !important;
+    }
+
+    .nav-links {
+        flex-direction: column;
+    }
+
+    .nav-cta {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+}
