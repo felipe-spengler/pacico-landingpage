@@ -5,6 +5,8 @@ import imgPrensa from '../assets/img_prensa.png';
 import imgRobo from '../assets/img_robo.png';
 import imgMisturador from '../assets/img_misturador.png';
 import imgDosadora from '../assets/img_dosadora.png';
+import { useTranslation } from '../contexts/TranslationContext';
+import ScrollReveal from '../components/ScrollReveal';
 
 const STATS = [
     { num: 'Qualidade', lbl: 'Superior no mercado' },
@@ -36,6 +38,7 @@ const ABOUT_HIGHLIGHTS = [
 ];
 
 export default function HomePage() {
+    const { t } = useTranslation();
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
     const heroRef = useRef<HTMLElement>(null);
     const goWA = () => window.open('https://wa.me/554591456949?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20orçamento.', '_blank');
@@ -63,31 +66,31 @@ export default function HomePage() {
                     <div className="hero-content">
                         <div className="hero-badge fade-in">
                             <span className="hero-badge-dot" />
-                            INDÚSTRIA 4.0 · FEITO NO BRASIL
+                            {t('INDÚSTRIA 4.0 · FEITO NO BRASIL')}
                         </div>
 
                         <h1 className="heading-xl hero-title fade-in fade-in-delay-1">
-                            Engenharia de precisão<br />
-                            <span className="highlight">em cada bloco.</span>
+                            {t('Engenharia de precisão')}<br />
+                            <span className="highlight">{t('em cada bloco.')}</span>
                         </h1>
 
                         <p className="body-lg hero-sub fade-in fade-in-delay-2">
-                            Transformando matérias-primas em operações de alta lucratividade. Descubra o portfólio de engenharia pesada do misturador à paletização.
+                            {t('Transformando matérias-primas em operações de alta lucratividade. Descubra o portfólio de engenharia pesada do misturador à paletização.')}
                         </p>
 
                         <div className="hero-actions fade-in fade-in-delay-3">
                             <Link to="/produtos" className="btn btn-primary btn-lg">
-                                Ver Equipamentos <FaArrowRight />
+                                {t('Ver Equipamentos')} <FaArrowRight />
                             </Link>
                             <button className="btn btn-ghost btn-lg" onClick={goWA}>
-                                <FaWhatsapp size={20} /> Fale com Consultor
+                                <FaWhatsapp size={20} /> {t('Fale com Consultor')}
                             </button>
                         </div>
 
                         <div className="hero-trust fade-in fade-in-delay-3">
-                            <div className="trust-item"><FaShieldAlt className="trust-icon" /> Garantia técnica</div>
-                            <div className="trust-item"><FaIndustry className="trust-icon" /> Equipamentos robustos</div>
-                            <div className="trust-item"><FaStar className="trust-icon" /> Atendimento de excelência</div>
+                            <div className="trust-item"><FaShieldAlt className="trust-icon" /> {t('Garantia técnica')}</div>
+                            <div className="trust-item"><FaIndustry className="trust-icon" /> {t('Equipamentos robustos')}</div>
+                            <div className="trust-item"><FaStar className="trust-icon" /> {t('Atendimento de excelência')}</div>
                         </div>
                     </div>
                 </div>
@@ -97,45 +100,51 @@ export default function HomePage() {
             {/* ═══ STATS RIBBON ═══ */}
             <section className="stats-ribbon">
                 <div className="container">
-                    <div className="stats-grid">
-                        {STATS.map((s, i) => (
-                            <div key={i} className="stat-item">
-                                <div className="stat-num">{s.num}</div>
-                                <div className="stat-label">{s.lbl}</div>
-                            </div>
-                        ))}
-                    </div>
+                    <ScrollReveal direction="fade" delay={100}>
+                        <div className="stats-grid">
+                            {STATS.map((s, i) => (
+                                <div key={i} className="stat-item">
+                                    <div className="stat-num">{t(s.num)}</div>
+                                    <div className="stat-label">{t(s.lbl)}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </ScrollReveal>
                 </div>
             </section>
 
             {/* ═══ EQUIPAMENTOS EM DESTAQUE ═══ */}
             <section className="section" style={{ background: 'var(--bg-2)' }}>
                 <div className="container">
-                    <div className="section-header-row">
-                        <div>
-                            <span className="eyebrow">Portfólio</span>
-                            <h2 className="heading-lg">Nossas Soluções</h2>
-                        </div>
-                        <Link to="/produtos" className="btn btn-ghost">
-                            Ver todos os 10 equipamentos <FaArrowRight />
-                        </Link>
-                    </div>
-
-                    <div className="grid-4">
-                        {FEATURE_PRODUCTS.map((p, i) => (
-                            <Link to="/produtos" key={i} className="product-card" style={{ textDecoration: 'none' }}>
-                                <div className="product-img-box">
-                                    <img src={p.img} alt={p.name} className="product-img" />
-                                </div>
-                                <div className="product-body">
-                                    <span className="product-tag">{p.tag}</span>
-                                    <div className="product-name">{p.name}</div>
-                                    <p className="product-sub">{p.sub}</p>
-                                    <div className="product-cta">Ver detalhes <FaArrowRight size={11} /></div>
-                                </div>
+                    <ScrollReveal direction="up">
+                        <div className="section-header-row">
+                            <div>
+                                <span className="eyebrow">{t('Portfólio')}</span>
+                                <h2 className="heading-lg">{t('Nossas Soluções')}</h2>
+                            </div>
+                            <Link to="/produtos" className="btn btn-ghost">
+                                {t('Ver todos os 10 equipamentos')} <FaArrowRight />
                             </Link>
-                        ))}
-                    </div>
+                        </div>
+                    </ScrollReveal>
+
+                    <ScrollReveal direction="up" delay={200}>
+                        <div className="grid-4">
+                            {FEATURE_PRODUCTS.map((p, i) => (
+                                <Link to="/produtos" key={i} className="product-card" style={{ textDecoration: 'none' }}>
+                                    <div className="product-img-box">
+                                        <img src={p.img} alt={t(p.name)} className="product-img" />
+                                    </div>
+                                    <div className="product-body">
+                                        <span className="product-tag">{t(p.tag)}</span>
+                                        <div className="product-name">{t(p.name)}</div>
+                                        <p className="product-sub">{t(p.sub)}</p>
+                                        <div className="product-cta">{t('Ver detalhes')} <FaArrowRight size={11} /></div>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </ScrollReveal>
                 </div>
             </section>
 
@@ -143,55 +152,62 @@ export default function HomePage() {
             <section className="features-section section">
                 <div className="features-bg-circle" />
                 <div className="container">
-                    <div style={{ textAlign: 'center', marginBottom: 'var(--s6)' }}>
-                        <span className="eyebrow">Por que a Pacico?</span>
-                        <h2 className="heading-lg">Engenharia que multiplica seus resultados</h2>
-                    </div>
-                    <div className="grid-3">
-                        {FEATURES.map((f, i) => (
-                            <div key={i} className="feature-card">
-                                <div className="feature-icon-wrap">{f.icon}</div>
-                                <h3 className="feature-title">{f.title}</h3>
-                                <p className="feature-desc">{f.desc}</p>
-                            </div>
-                        ))}
-                    </div>
+                    <ScrollReveal direction="up">
+                        <div style={{ textAlign: 'center', marginBottom: 'var(--s6)' }}>
+                            <span className="eyebrow">{t('Por que a Pacico?')}</span>
+                            <h2 className="heading-lg">{t('Engenharia que multiplica seus resultados')}</h2>
+                        </div>
+                    </ScrollReveal>
+
+                    <ScrollReveal direction="up" delay={200}>
+                        <div className="grid-3">
+                            {FEATURES.map((f, i) => (
+                                <div key={i} className="feature-card">
+                                    <div className="feature-icon-wrap">{f.icon}</div>
+                                    <h3 className="feature-title">{t(f.title)}</h3>
+                                    <p className="feature-desc">{t(f.desc)}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </ScrollReveal>
                 </div>
             </section>
 
             {/* ═══ SOBRE MINI ═══ */}
             <section className="section">
                 <div className="container">
-                    <div className="grid-2 about-grid">
-                        <div className="about-img-wrap">
-                            <img src={imgPrensa} alt="Sobre a Pacico" />
-                            <div className="about-img-overlay" />
-                            <div className="about-years-badge">
-                                <span className="num">BR</span>
-                                <span className="lbl">Nacional</span>
+                    <ScrollReveal direction="up">
+                        <div className="grid-2 about-grid">
+                            <div className="about-img-wrap">
+                                <img src={imgPrensa} alt="Sobre a Pacico" />
+                                <div className="about-img-overlay" />
+                                <div className="about-years-badge">
+                                    <span className="num">BR</span>
+                                    <span className="lbl">{t('Nacional')}</span>
+                                </div>
+                            </div>
+                            <div className="about-text">
+                                <span className="eyebrow">{t('Sobre a Pacico')}</span>
+                                <h2 className="heading-lg" style={{ marginBottom: 'var(--s3)' }}>
+                                    {t('Tradição que se')} <span className="highlight">{t('traduz em resultados.')}</span>
+                                </h2>
+                                <p className="body-lg" style={{ marginBottom: 'var(--s3)' }}>
+                                    {t('Nascemos com uma missão simples: elevar o padrão industrial das fábricas de blocos brasileiras. Hoje, com equipamentos em operação por todo o país, entregamos tecnologia de nível mundial com DNA 100% brasileiro.')}
+                                </p>
+                                <ul className="about-perks">
+                                    {ABOUT_HIGHLIGHTS.map((p, i) => (
+                                        <li key={i} className="about-perk">
+                                            <span className="perk-dot" />
+                                            {t(p)}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <Link to="/sobre" className="btn btn-primary">
+                                    {t('Conheça nossa história')} <FaArrowRight />
+                                </Link>
                             </div>
                         </div>
-                        <div className="about-text">
-                            <span className="eyebrow">Sobre a Pacico</span>
-                            <h2 className="heading-lg" style={{ marginBottom: 'var(--s3)' }}>
-                                Tradição que se <span className="highlight">traduz em resultados.</span>
-                            </h2>
-                            <p className="body-lg" style={{ marginBottom: 'var(--s3)' }}>
-                                Nascemos com uma missão simples: elevar o padrão industrial das fábricas de blocos brasileiras. Hoje, com equipamentos em operação por todo o país, entregamos tecnologia de nível mundial com DNA 100% brasileiro.
-                            </p>
-                            <ul className="about-perks">
-                                {ABOUT_HIGHLIGHTS.map((p, i) => (
-                                    <li key={i} className="about-perk">
-                                        <span className="perk-dot" />
-                                        {p}
-                                    </li>
-                                ))}
-                            </ul>
-                            <Link to="/sobre" className="btn btn-primary">
-                                Conheça nossa história <FaArrowRight />
-                            </Link>
-                        </div>
-                    </div>
+                    </ScrollReveal>
                 </div>
             </section>
 
@@ -199,15 +215,17 @@ export default function HomePage() {
             <section className="cta-band">
                 <div className="cta-band-glow" />
                 <div className="container">
-                    <div className="cta-band-inner">
-                        <div className="cta-band-text">
-                            <h2 className="heading-lg">Pronto para elevar sua indústria?</h2>
-                            <p>Converse com nosso time de engenheiros. Projeto personalizado para sua capacidade de investimento.</p>
+                    <ScrollReveal direction="up">
+                        <div className="cta-band-inner">
+                            <div className="cta-band-text">
+                                <h2 className="heading-lg">{t('Pronto para elevar sua indústria?')}</h2>
+                                <p>{t('Converse com nosso time de engenheiros. Projeto personalizado para sua capacidade de investimento.')}</p>
+                            </div>
+                            <button className="btn btn-primary btn-lg" onClick={goWA} style={{ flexShrink: 0 }}>
+                                <FaWhatsapp size={22} /> {t('Solicitar Proposta Agora')}
+                            </button>
                         </div>
-                        <button className="btn btn-primary btn-lg" onClick={goWA} style={{ flexShrink: 0 }}>
-                            <FaWhatsapp size={22} /> Solicitar Proposta Agora
-                        </button>
-                    </div>
+                    </ScrollReveal>
                 </div>
             </section>
 
@@ -218,3 +236,4 @@ export default function HomePage() {
         </>
     );
 }
+

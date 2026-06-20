@@ -8,7 +8,8 @@
     align-items: center;
     overflow: hidden;
     background: radial-gradient(ellipse 80% 80% at 75% 50%, #0d2050 0%, #030a1c 60%, rgba(3, 10, 28, 0.9) 100%);
-    padding-top: 100px;
+    padding-top: 420px;
+    transition: padding-top 0.4s ease;
 }
 
 .hero-noise {
@@ -520,7 +521,8 @@
 
 /* ═══════════════ PRODUCTS PAGE ═══════════════ */
 .page-hero {
-    padding-top: 150px;
+    padding-top: 420px;
+    transition: padding-top 0.4s ease;
     padding-bottom: var(--s7);
     background: radial-gradient(ellipse at top center, #0d2050 0%, var(--bg) 70%);
     text-align: center;
@@ -1086,3 +1088,12 @@
         font-size: 1.6rem;
     }
 }
+
+@media (max-width: 900px) {
+    .hero {
+        padding-top: 180px !important;
+    }
+    .page-hero {
+        padding-top: 180px !important;
+    }
+}

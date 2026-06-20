@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { FaArrowRight, FaWhatsapp } from 'react-icons/fa';
 import { products, categories } from '../data/products';
 import '../styles/pages.css';
+import { useTranslation } from '../contexts/TranslationContext';
 
 export default function ProductsPage() {
+    const { t } = useTranslation();
     const [filter, setFilter] = useState('Todos');
 
     useEffect(() => {
@@ -23,10 +25,10 @@ export default function ProductsPage() {
         <>
             <header className="page-hero">
                 <div className="container">
-                    <span className="eyebrow fade-in">Portfólio de Equipamentos</span>
-                    <h1 className="heading-xl fade-in fade-in-delay-1" style={{ marginBottom: '16px' }}>Soluções em Concreto</h1>
+                    <span className="eyebrow fade-in">{t('Portfólio de Equipamentos')}</span>
+                    <h1 className="heading-xl fade-in fade-in-delay-1" style={{ marginBottom: '16px' }}>{t('Soluções em Concreto')}</h1>
                     <p className="body-lg fade-in fade-in-delay-2" style={{ maxWidth: '600px', margin: '0 auto' }}>
-                        Nossa linha completa de tecnologia para fabricação de blocos, pavers, tubos e automação.
+                        {t('Nossa linha completa de tecnologia para fabricação de blocos, pavers, tubos e automação.')}
                     </p>
                 </div>
             </header>
@@ -41,7 +43,7 @@ export default function ProductsPage() {
                                 className={`filter-chip ${filter === cat ? 'active' : ''}`}
                                 onClick={() => setFilter(cat)}
                             >
-                                {cat}
+                                {t(cat)}
                             </button>
                         ))}
                     </div>
@@ -51,15 +53,15 @@ export default function ProductsPage() {
                         {filtered.map(p => (
                             <div key={p.id} className="product-full-card">
                                 <div className="pfc-img-box">
-                                    <img src={p.image} alt={p.name} className="pfc-img" />
+                                    <img src={p.image} alt={t(p.name)} className="pfc-img" />
                                 </div>
                                 <div className="pfc-body">
-                                    <h3 className="pfc-name">{p.name}</h3>
-                                    <p className="pfc-sub" style={{ marginBottom: '20px' }}>{p.subtitle}</p>
+                                    <h3 className="pfc-name">{t(p.name)}</h3>
+                                    <p className="pfc-sub" style={{ marginBottom: '20px' }}>{t(p.subtitle)}</p>
 
                                     <div className="pfc-actions">
                                         <button className="btn btn-primary btn-sm" style={{ width: '100%', justifyContent: 'center' }} onClick={() => goWA(p)}>
-                                            <FaWhatsapp size={16} /> Falar sobre este
+                                            <FaWhatsapp size={16} /> {t('Falar sobre este')}
                                         </button>
                                     </div>
                                 </div>
@@ -68,10 +70,10 @@ export default function ProductsPage() {
                     </div>
 
                     <div style={{ textAlign: 'center', marginTop: 'var(--s6)' }}>
-                        <span className="eyebrow">DÚVIDAS?</span>
-                        <h2 className="heading-md" style={{ marginBottom: 'var(--s3)' }}>Qual o equipamento ideal para minha fábrica?</h2>
-                        <button className="btn btn-ghost" onClick={() => goWA({ name: 'Projeto Personalizado', subtitle: 'Consultoria' })}>
-                            Falar com um Consultor <FaArrowRight />
+                        <span className="eyebrow">{t('DÚVIDAS?')}</span>
+                        <h2 className="heading-md" style={{ marginBottom: 'var(--s3)' }}>{t('Qual o equipamento ideal para minha fábrica?')}</h2>
+                        <button className="btn btn-ghost" onClick={() => goWA({ name: t('Projeto Personalizado'), subtitle: t('Consultoria') })}>
+                            {t('Falar com um Consultor')} <FaArrowRight />
                         </button>
                     </div>
                 </div>
@@ -79,3 +81,4 @@ export default function ProductsPage() {
         </>
     );
 }
+

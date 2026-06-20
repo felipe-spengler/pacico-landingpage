@@ -2,27 +2,29 @@ import { useEffect } from 'react';
 import { FaCheck, FaBuilding, FaGlobe, FaCertificate } from 'react-icons/fa';
 import '../styles/pages.css';
 import heroFactory from '../assets/hero_factory.png';
-
-const VALUES = [
-    { icon: <FaCertificate />, title: 'Qualidade', desc: 'Compromisso com o máximo desempenho dos nossos produtos.' },
-    { icon: <FaBuilding />, title: 'Inovação', desc: 'Busca constante por aprimoramento tecnológico.' },
-    { icon: <FaCheck />, title: 'Comprometimento', desc: 'Foco nos resultados e no sucesso dos nossos clientes.' },
-    { icon: <FaGlobe />, title: 'Alcance Nacional', desc: 'Atendendo e equipando indústrias em todo o Brasil.' },
-];
+import { useTranslation } from '../contexts/TranslationContext';
 
 export default function AboutPage() {
+    const { t } = useTranslation();
     useEffect(() => window.scrollTo(0, 0), []);
+
+    const VALUES = [
+        { icon: <FaCertificate />, title: t('Qualidade'), desc: t('Compromisso com o máximo desempenho dos nossos produtos.') },
+        { icon: <FaBuilding />, title: t('Inovação'), desc: t('Busca constante por aprimoramento tecnológico.') },
+        { icon: <FaCheck />, title: t('Comprometimento'), desc: t('Foco nos resultados e no sucesso dos nossos clientes.') },
+        { icon: <FaGlobe />, title: t('Alcance Nacional'), desc: t('Atendendo e equipando indústrias em todo o Brasil.') },
+    ];
 
     return (
         <>
             <header className="page-hero">
                 <div className="container" style={{ position: 'relative', zIndex: 10 }}>
-                    <span className="eyebrow fade-in">Nossa Empresa</span>
+                    <span className="eyebrow fade-in">{t('Nossa Empresa')}</span>
                     <h1 className="heading-xl fade-in fade-in-delay-1" style={{ marginBottom: '16px' }}>
-                        A Pacico<br /><span className="highlight">Máquinas</span>
+                        {t('A Pacico')}<br /><span className="highlight">{t('Máquinas')}</span>
                     </h1>
                     <p className="body-lg fade-in fade-in-delay-2" style={{ maxWidth: '600px', margin: '0 auto' }}>
-                        Fornecendo soluções tecnológicas de alta performance para a indústria de artefatos de concreto.
+                        {t('Fornecendo soluções tecnológicas de alta performance para a indústria de artefatos de concreto.')}
                     </p>
                 </div>
             </header>
@@ -32,10 +34,10 @@ export default function AboutPage() {
                     <div className="grid-2 fade-in fade-in-delay-3" style={{ alignItems: 'flex-start' }}>
                         {/* Esquerda: Texto */}
                         <div>
-                            <span className="eyebrow">SOBRE NÓS</span>
-                            <h2 className="heading-lg" style={{ marginBottom: 'var(--s3)' }}>Tecnologia que impulsiona clientes</h2>
+                            <span className="eyebrow">{t('SOBRE NÓS')}</span>
+                            <h2 className="heading-lg" style={{ marginBottom: 'var(--s3)' }}>{t('Tecnologia que impulsiona clientes')}</h2>
                             <p className="body-lg" style={{ marginBottom: 'var(--s6)' }}>
-                                A Pacico fornece soluções tecnológicas de alta performance para a indústria de artefatos de concreto, impulsionando o crescimento dos nossos clientes com máquinas robustas e suporte de excelência. Projetamos o que há de melhor em vibro-prensas e misturadores.
+                                {t('A Pacico fornece soluções tecnológicas de alta performance para a indústria de artefatos de concreto, impulsionando o crescimento dos nossos clientes com máquinas robustas e suporte de excelência. Projetamos o que há de melhor em vibro-prensas e misturadores.')}
                             </p>
 
                             {/* Valores */}
@@ -63,19 +65,19 @@ export default function AboutPage() {
             <section className="section" style={{ background: 'var(--bg-2)' }}>
                 <div className="container">
                     <div className="diffs-card">
-                        <span className="eyebrow fade-in" style={{ color: '#fff' }}>DIFERENCIAIS</span>
+                        <span className="eyebrow fade-in" style={{ color: '#fff' }}>{t('DIFERENCIAIS')}</span>
                         <h2 className="heading-lg fade-in fade-in-delay-1" style={{ color: '#fff', marginBottom: 'var(--s6)' }}>
-                            O compromisso da Pacico
+                            {t('O compromisso da Pacico')}
                         </h2>
 
                         <div className="diffs-grid fade-in fade-in-delay-2">
                             {[
-                                'Fabricado 100% no Brasil',
-                                'Assistência presencial',
-                                'Treinamento completo',
-                                'Garantia de 1 ano',
-                                'Opções de Financiamento',
-                                'Suporte via WhatsApp'
+                                t('Fabricado 100% no Brasil'),
+                                t('Assistência presencial'),
+                                t('Treinamento completo'),
+                                t('Garantia de 1 ano'),
+                                t('Opções de Financiamento'),
+                                t('Suporte via WhatsApp')
                             ].map((txt, i) => (
                                 <div key={i} className="diff-item">
                                     <div className="diff-check"><FaCheck /></div>
@@ -89,3 +91,4 @@ export default function AboutPage() {
         </>
     );
 }
+
